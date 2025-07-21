@@ -24,6 +24,10 @@ Product.init({
   img_Url:{
     type:DataTypes.STRING,
     allowNull: false,
+  },
+  productType:{
+    type:DataTypes.STRING,
+    allowNull: false,
   }
 }, {
   sequelize,

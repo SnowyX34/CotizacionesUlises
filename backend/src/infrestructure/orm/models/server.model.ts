@@ -1,13 +1,11 @@
 import express, { Application } from 'express';
 import cors from 'cors';
-import routesUser from '../../../config/routes/user.routes';
-import routesCart from '../../../config/routes/cart.routes';
-import routesProduct from '../../../config/routes/product.routes'
+import routesUser from '../../../interfaces/routes/user.routes';
+import routesCart from '../../../interfaces/routes/cart.routes';
+import routesProduct from '../../../interfaces/routes/product.routes'
 import User from './user.model';
 import path from 'path';
 import { Product } from './product.model';
-
-const app: Application = express();
 
 class Server {
     private readonly app: Application;
@@ -33,16 +31,11 @@ class Server {
         this.app.use('/api/users', routesUser);
         this.app.use('/api/cotizacion', routesCart);
         this.app.use('/api/products', routesProduct);
-        
-        // ✅ CORREGIDO: Ruta estática para las imágenes
         const uploadsPath = path.join(process.cwd(), 'uploads');
         console.log('Sirviendo archivos estáticos desde:', uploadsPath);
        this.app.use('/uploads', express.static(path.join(__dirname, '../../../../uploads')));
-        
-        // ✅ OPCIONAL: Ruta de prueba para verificar el servidor
         this.app.get('/test', (req, res) => {
             res.json({ 
-                message: 'Servidor funcionando correctamente',
                 uploadsPath: uploadsPath,
                 currentDir: process.cwd()
             });

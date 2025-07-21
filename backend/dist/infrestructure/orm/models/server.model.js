@@ -5,13 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const user_routes_1 = __importDefault(require("../../../config/routes/user.routes"));
-const cart_routes_1 = __importDefault(require("../../../config/routes/cart.routes"));
-const product_routes_1 = __importDefault(require("../../../config/routes/product.routes"));
+const user_routes_1 = __importDefault(require("../../../interfaces/routes/user.routes"));
+const cart_routes_1 = __importDefault(require("../../../interfaces/routes/cart.routes"));
+const product_routes_1 = __importDefault(require("../../../interfaces/routes/product.routes"));
 const user_model_1 = __importDefault(require("./user.model"));
 const path_1 = __importDefault(require("path"));
 const product_model_1 = require("./product.model");
-const app = (0, express_1.default)();
 class Server {
     constructor() {
         var _a;
@@ -31,14 +30,11 @@ class Server {
         this.app.use('/api/users', user_routes_1.default);
         this.app.use('/api/cotizacion', cart_routes_1.default);
         this.app.use('/api/products', product_routes_1.default);
-        // ✅ CORREGIDO: Ruta estática para las imágenes
         const uploadsPath = path_1.default.join(process.cwd(), 'uploads');
         console.log('Sirviendo archivos estáticos desde:', uploadsPath);
         this.app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, '../../../../uploads')));
-        // ✅ OPCIONAL: Ruta de prueba para verificar el servidor
         this.app.get('/test', (req, res) => {
             res.json({
-                message: 'Servidor funcionando correctamente',
                 uploadsPath: uploadsPath,
                 currentDir: process.cwd()
             });

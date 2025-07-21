@@ -9,14 +9,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { AppRoutingModule } from './app.routing.module';
 
 import { AppComponent } from '../app/app'; 
-import { Logins } from './auth/pages/login/login';
-import { SignInComponent } from './auth/pages/register/register';
-import { HomeComponent } from './auth/pages/home/home';
+import { Logins } from './features/auth/pages/login/login';
+import { SignInComponent } from './features/auth/pages/register/register'; 
+import { HomeComponent } from './features/home/pages/home/home'; 
 import { RouterModule } from '@angular/router';
-import { AdminProductsComponent } from './auth/pages/products/products';
+import { AdminProductsComponent } from './features/products/pages/products/products'; 
 
 import { AddTokenInterceptor } from '../app/core/utilities/add-token.interceptor';
-import { Navbar } from "./auth/pages/navbar/navbar";
+import { Navbar } from './features/navbar/pages/navbar/navbar'; 
+import { CartComponent } from './features/cart/pages/cart/cart';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { Navbar } from "./auth/pages/navbar/navbar";
     SignInComponent,
     HomeComponent,
     Navbar,
-    AdminProductsComponent
+    AdminProductsComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

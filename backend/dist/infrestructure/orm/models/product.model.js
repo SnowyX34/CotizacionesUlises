@@ -30,6 +30,10 @@ Product.init({
     img_Url: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
+    },
+    productType: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
     }
 }, {
     sequelize: connection_1.default,
