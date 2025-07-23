@@ -14,10 +14,10 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "preserve",
-    "baseUrl": "./",                          // 👈 Asegura base relativa
+    "baseUrl": "./",
     "paths": {
-      "@shared/*": ["../shared/*"]
-    }
+  "@shared/*": ["src/shared/*"]
+}
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

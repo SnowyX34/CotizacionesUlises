@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { Products } from '../../../../../../../backend/src/domain/dto/product.dto';
+import { Products } from '@shared/dto/product.dto';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment'; 

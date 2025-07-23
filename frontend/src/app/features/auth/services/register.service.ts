@@ -13,7 +13,7 @@ export class RegisterService {
 
   constructor(private readonly http: HttpClient) {
     this.myAppUrl = environment.endpoint;
-    this.myApiUrl = 'api/users/register'
+    this.myApiUrl = 'users/register'
   }
 
   signIn(user: Register, avatarFile?: File): Observable<any> {

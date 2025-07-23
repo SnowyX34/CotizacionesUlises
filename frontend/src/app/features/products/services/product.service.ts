@@ -14,7 +14,7 @@ export class ProductService {
 
   constructor(private readonly http: HttpClient) {
     this.myAppUrl = environment.endpoint;
-    this.myApiUrl = 'api/products';
+    this.myApiUrl = 'products';
   }
 
   getAll(): Observable<Products[]> {
