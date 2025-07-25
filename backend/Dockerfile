@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
@@ -6,7 +6,11 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+RUN npx ng build --configuration=production
 
-EXPOSE 3000
+# Etapa de producción con Nginx
+FROM nginx:alpine
 
-CMD ["npm", "start"]
+COPY --from=build /app/dist/frontend /usr/share/nginx/html
+
+COPY default.conf /etc/nginx/conf.d/default.conf

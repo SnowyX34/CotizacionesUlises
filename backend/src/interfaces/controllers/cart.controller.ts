@@ -30,20 +30,17 @@ export const updateCart = async (req: Request, res: Response) => {
   try {
     const cartItem = await Cart.findByPk(id);
     if (!cartItem) {
-      res.status(404).json({ message: 'Item no encontrado en el carrito' });
-      return;
+      return res.status(404).json({ message: 'Item no encontrado en el carrito' });
     }
 
     const updateData = { product_id, model, height, width, quantity, precio_total };
 
     await cartItem.update(updateData);
 
-    res.json({ message: 'Carrito actualizado', cartItem });
-    return;
+    return res.json({ message: 'Carrito actualizado', cartItem });
   } catch (error) {
     console.error('Error al actualizar carrito:', error);
-    res.status(500).json({ message: 'Error interno' });
-    return;
+    return res.status(500).json({ message: 'Error interno' });
   }
 };
 

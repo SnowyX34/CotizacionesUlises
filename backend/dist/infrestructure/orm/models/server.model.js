@@ -39,7 +39,6 @@ class Server {
                 currentDir: process.cwd()
             });
         });
-        this.app.use('api/cart', cart_routes_1.default);
     }
     middlewares() {
         this.app.use(express_1.default.json());

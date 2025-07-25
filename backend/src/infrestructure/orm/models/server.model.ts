@@ -10,11 +10,11 @@ import { Product } from './product.model';
 class Server {
     private readonly app: Application;
     private readonly port: string;
-
+    
     constructor() {
         this.app = express();
         this.port = process.env.PORT ?? '3000';
-
+        
         this.middlewares();
         this.routes();
         this.dbConnect();
@@ -32,16 +32,13 @@ class Server {
         this.app.use('/api/cotizacion', routesCart);
         this.app.use('/api/products', routesProduct);
         const uploadsPath = path.join(process.cwd(), 'uploads');
-        this.app.use('/uploads', express.static(path.join(__dirname, '../../../../uploads')));
+        console.log('Sirviendo archivos estáticos desde:', uploadsPath);
+       this.app.use('/uploads', express.static(path.join(__dirname, '../../../../uploads')));
         this.app.get('/test', (req, res) => {
-            res.json({
+            res.json({ 
                 uploadsPath: uploadsPath,
                 currentDir: process.cwd()
             });
-        });
-        this.app.use('/api/cart', routesCart);
-        this.app.get('/api/status', (req, res) => {
-            res.json({ message: '✅ Backend activo y respondiendo al frontend correctamente' });
         });
     }
 
@@ -49,7 +46,6 @@ class Server {
         this.app.use(express.json());
         this.app.use(cors());
     }
-
 
     private async dbConnect() {
         try {
