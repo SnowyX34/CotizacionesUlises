@@ -32,7 +32,6 @@ class Server {
         this.app.use('/api/cotizacion', routesCart);
         this.app.use('/api/products', routesProduct);
         const uploadsPath = path.join(process.cwd(), 'uploads');
-        console.log('Sirviendo archivos estáticos desde:', uploadsPath);
        this.app.use('/uploads', express.static(path.join(__dirname, '../../../../uploads')));
         this.app.get('/test', (req, res) => {
             res.json({ 
@@ -44,7 +43,11 @@ class Server {
 
     private middlewares() {
         this.app.use(express.json());
-        this.app.use(cors());
+        this.app.use(cors({
+  origin: 'https://frontend-4sj7.onrender.com',
+  credentials: true
+}));
+
     }
 
     private async dbConnect() {
